@@ -1,0 +1,47 @@
+version: '3'
+services: 
+  egg:
+    build: .
+    image: egg-docker
+    container_name: egg-docker
+    restart: always
+    # ports: 
+    #   - 127.0.0.1:7000:7000
+    networks:
+      - app-network
+  nginx:
+    image: nginx:stable-alpine
+    container_name: egg_nginx    
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/cert:/etc/nginx/cert
+      - ./logs/nginx:/var/log/nginx
+    restart: always
+    depends_on:
+      - egg
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge 
+# volumes:
+#   certbot-etc:
+#   certbot-var:
+#   web-root:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       device: /app
+#       o: bind
+     
+
+
+
+
+
+    
+      
