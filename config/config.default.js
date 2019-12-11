@@ -18,6 +18,18 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [];
 
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+    mapping: {
+      '.html': 'nunjucks',
+    },
+  };
+
+  config.assets = {
+    publicPath: '/public/',
+  };
+
+
 
   // add your user config here
   const userConfig = {
