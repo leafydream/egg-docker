@@ -40,6 +40,18 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       - app-network
+  
+  redis:
+    image: redis
+    container_name: egg_redis
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes: 
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports: 
+      - "6379:6379"
+    networks:
+      - app-network
    
 
 networks:
