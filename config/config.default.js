@@ -1,6 +1,7 @@
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
+const path = require('path');
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -25,8 +26,11 @@ module.exports = appInfo => {
     },
   };
 
-  config.assets = {
-    publicPath: '/public/',
+  // 静态资源文件夹
+  config.static = {
+    publicPath: '/',
+    prefix: '/',
+    dir: path.join(appInfo.baseDir, 'app/public'),
   };
 
 
